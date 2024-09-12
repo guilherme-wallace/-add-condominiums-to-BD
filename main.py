@@ -29,8 +29,8 @@ def main():
         # Insere os condomínios no banco de dados do Intranet
         arquivo_csv = 'src/dados.csv'
         nome_da_tabela = 'condominio'
-        inserir_dados_no_banco(arquivo_csv, nome_da_tabela)
-        logging.info("Condomínios inseridos no banco de dados com sucesso.")
+        resposta_for_log = inserir_dados_no_banco(arquivo_csv, nome_da_tabela)
+        logging.info(resposta_for_log)
 
     except Exception as e:
         logging.error(f"Erro durante a execução do script: {e}")

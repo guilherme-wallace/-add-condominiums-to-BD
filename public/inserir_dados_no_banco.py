@@ -23,10 +23,10 @@ def inserir_dados_no_banco(arquivo_csv, nome_da_tabela):
                     cursor.execute(query_verificacao, (linha['id'],))
                     resultado = cursor.fetchone()
 
-                    if resultado is None or resultado[0] == 0:  # Se o condomínio não existir
+                    if resultado[0] == 0:  # Se o condomínio não existir
                         # Insere no banco de dados
                         query_insercao = f"""
-                        INSERT INTO intranet.{nome_da_tabela} (condominioId, condominio, cidadeId, endereco, numero, cep, bairro)
+                        INSERT INTO {nome_da_tabela} (condominioId, condominio, cidadeId, endereco, numero, cep, bairro)
                         VALUES (%s, %s, %s, %s, %s, %s, %s)
                         """
                         cursor.execute(query_insercao, (
@@ -40,7 +40,6 @@ def inserir_dados_no_banco(arquivo_csv, nome_da_tabela):
                         ))
                         # Adiciona o nome do condomínio à lista
                         condominios_inseridos.append(linha['condominio'])
-                        #print(f"Condomínio {linha['condominio']} inserido com sucesso.")
 
             # Confirmando as inserções
             conexao.commit()
@@ -54,11 +53,15 @@ def inserir_dados_no_banco(arquivo_csv, nome_da_tabela):
 
     # Exibe os condomínios que foram inseridos
     if condominios_inseridos:
-        print("Condomínios inseridos no banco de dados:")
-        for condominio in condominios_inseridos:
-            print(f"- {condominio}")
+        resposta_for_log = "Condomínios inseridos no banco de dados:\n"
+        resposta_for_log += "\n".join(f"- {condominio}" for condominio in condominios_inseridos)
+        print ("Condomínio inserido no banco de dados:\n", resposta_for_log)
     else:
+        resposta_for_log = "Nenhum novo condomínio foi inserido."
         print("Nenhum novo condomínio foi inserido.")
 
+    return resposta_for_log
+
 # Exemplo de chamada da função
-# inserir_dados_no_banco('dados.csv', 'condominio')
+# resposta = inserir_dados_no_banco('dados.csv', 'condominio')
+# print(resposta)
