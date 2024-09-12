@@ -3,7 +3,7 @@ import base64
 import json
 from route.dadosDeconexao import hostIntranet, urlIXC, tokenIXC
 
-def obter_dados_condominio(arquivo_saida):
+def obter_dados_condominio(arquivo_saida_pega):
     # Configurações de conexão
     host = hostIntranet
     url = urlIXC.format(host)
@@ -31,8 +31,8 @@ def obter_dados_condominio(arquivo_saida):
     response = requests.get(url, data=json.dumps(payload), headers=headers)
 
     # Salva a resposta no arquivo especificado
-    with open(arquivo_saida, 'w', encoding='utf-8') as f:
+    with open(arquivo_saida_pega, 'w', encoding='utf-8') as f:
         f.write(response.text)
 
-    print(f"A resposta foi salva no arquivo '{arquivo_saida}'.")
-
+    print(f"A resposta foi salva no arquivo '{arquivo_saida_pega}'.")
+    

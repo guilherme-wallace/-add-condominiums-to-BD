@@ -1,7 +1,7 @@
 import json
 import csv
 
-def processar_dados_condominios(pegacondsResultado, condsRegistrados, dadosFiltradosArquivo, arquivo_saida):
+def processar_dados_condominios(pegacondsResultado, condsRegistrados, dadosFiltradosArquivo, arquivo_saida_formata):
     
     # 1ª Etapa: Leitura do arquivo inicial e conversão para JSON
     with open(pegacondsResultado, 'r', encoding='utf-8') as arquivo:
@@ -45,12 +45,12 @@ def processar_dados_condominios(pegacondsResultado, condsRegistrados, dadosFiltr
 
     campos = ["id", "condominio", "id_cidade", "endereco", "numero", "cep", "bairro"]
 
-    with open(arquivo_saida, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(arquivo_saida_formata, 'w', newline='', encoding='utf-8') as csvfile:
         escritor_csv = csv.DictWriter(csvfile, fieldnames=campos)
 
         escritor_csv.writeheader()
         for registro in dados_json:
             escritor_csv.writerow({campo: registro[campo] for campo in campos})
 
-    print(f"Os dados foram convertidos e salvos em {arquivo_saida}.")
+    print(f"Os dados foram convertidos e salvos em {arquivo_saida_formata}.")
 
