@@ -1,7 +1,7 @@
 from public.obter_dados_condominio import *
 from public.processar_dados_condominios import *
 from public.inserir_dados_no_banco import *
-from public.consultar_dados import *
+from consultar_dados import *
 
 #Pega os dados do comdominios do IXC
 arquivo_saida = '../src/pegacondsResultado.txt'

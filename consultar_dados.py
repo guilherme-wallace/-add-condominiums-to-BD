@@ -2,7 +2,11 @@ import mysql.connector
 import json
 from route.dadosDeconexao import configuracao_dbIntranet
 
-def consultar_dados(arquivo_saida='src/resultadoConsultaBanco.json', tecnologia_id=4):
+#Qual estrutura será consultada?
+tecnologia_id = 4
+arquivo_saida='resultadoConsultaBanco.json'
+
+def consultar_dados(arquivo_saida, tecnologia_id):
     # Conexão com o banco de dados
     configuracao_db = configuracao_dbIntranet
     conn = mysql.connector.connect(**configuracao_db)
@@ -45,5 +49,5 @@ def consultar_dados(arquivo_saida='src/resultadoConsultaBanco.json', tecnologia_
 
     print(f"Consulta realizada e resultado salvo em '{arquivo_saida}'.")
 
-# Exemplo de chamada da função
-consultar_dados()
+# Chamada da função
+consultar_dados(arquivo_saida, tecnologia_id)

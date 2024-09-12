@@ -39,5 +39,3 @@ def inserir_dados_no_banco(arquivo_csv, nome_da_tabela):
 
     print("Dados inseridos com sucesso no banco de dados.")
 
-# Exemplo de chamada da função
-inserir_dados_no_banco()
